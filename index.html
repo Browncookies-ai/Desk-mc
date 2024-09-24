@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Teks Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 12px);
+            padding: 6px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #generatedText {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h2>Form Teks Generator</h2>
+    <form id="textForm">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" required><br><br>
+        
+        <label for="bintang">Bintang:</label>
+        <input type="text" id="bintang" name="bintang" required><br><br>
+
+        <label for="pembuat">Pembuat:</label>
+        <input type="text" id="pembuat" name="pembuat" required><br><br>
+
+        <label for="coin">Minecoin:</label>
+        <input type="text" id="coin" name="coin" required><br><br>
+        
+        <label for="desk">Deskripsi:</label>
+        <input type="text" id="desk" name="desk" required><br><br>
+        
+        <label for="versi">Versi:</label>
+        <input type="text" id="versi" name="versi" required><br><br>
+        
+        <label for="review">Review:</label>
+        <input type="text" id="review" name="review" required><br><br>
+
+        <label for="linkdown">Link Download:</label>
+        <input type="text" id="linkdown" name="linkdown" required><br><br>
+        
+        <label for="tipe">Tipe:</label>
+        <input type="text" id="tipe" name="tipe" required><br><br>
+
+
+        <button type="button" onclick="generateText()">Generate Text</button>
+    </form>
+
+    <div id="generatedText">
+        <!-- Hasil teks yang di-generate akan muncul di sini -->
+    </div>
+    <button id="copyButton" onclick="copyHTML()">Salin Hasil</button>
+
+    <script>
+        function generateText() {
+            var nama = document.getElementById('nama').value;
+            var bintang = document.getElementById('bintang').value;
+            var pembuat = document.getElementById('pembuat').value;
+            var coin = document.getElementById('coin').value;
+            var desk = document.getElementById('desk').value;
+            var versi = document.getElementById('versi').value;
+            var review = document.getElementById('review').value;
+            var linkdown = document.getElementById('linkdown').value;
+            var tipe = document.getElementById('tipe').value;
+
+
+            var generatedHTML = 
+`${nama}
+${bintang}
+Pembuat : ${pembuat}
+Minecoin : ${coin}💰
+Deskripsi : ${desk}
+Versi : ${versi}
+Review : ${review}
+Download link : ${linkdown}
+KALO MAU REPOST/UPLOAD YOUTUBE SHORTLINKNYA JANGAN DIGANTI, IZIN DULU LEWAT SINI
+${tipe}`;
+
+            document.getElementById('generatedText').textContent = generatedHTML;
+        }
+
+        function copyHTML() {
+            var textToCopy = document.getElementById('generatedText').textContent;
+
+            navigator.clipboard.writeText(textToCopy).then(function() {
+                alert('Kode HTML berhasil disalin!');
+            }, function(err) {
+                alert('Gagal menyalin teks: ', err);
+            });
+        }
+    </script>
+</body>
+  </html>
+  
