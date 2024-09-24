@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMC Archive</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            width: 100%;
+            padding: 20px;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        section {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px 0;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+        }
+        .carousel img {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .category {
+            margin-top: 40px;
+        }
+        .category h2 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RMC ARCHIVE</h1>
+        <p>Selamat datang di RMC Archive, web yang berisi item Marketplace yang dibagikan secara gratis!</p>
+    </header>
+    <section>
+        <div class="category">
+            <h2>Texture Pack</h2>
+            <div class="carousel" id="texturePack">
+                <img src="https://www.minecraft.net/en-us/marketplace/pdp?id=20464d7c-15c4-4067-b783-9714354ffa1b?id=20464d7c-15c4-4067-b783-9714354ffa1b#" alt="Item 1" onclick="openDescription('Texture Pack', 'Item 1')">
+                <img src="img2.jpg" alt="Item 2" onclick="openDescription('Texture Pack', 'Item 2')">
+                <img src="img3.jpg" alt="Item 3" onclick="openDescription('Texture Pack', 'Item 3')">
+                <!-- Add more images as needed -->
+            </div>
+        </div>
+        <div class="category">
+            <h2>Addon</h2>
+            <div class="carousel" id="addon">
+                <img src="img1.jpg" alt="Item 1" onclick="openDescription('Addon', 'Item 1')">
+                <img src="img2.jpg" alt="Item 2" onclick="openDescription('Addon', 'Item 2')">
+                <img src="img3.jpg" alt="Item 3" onclick="openDescription('Addon', 'Item 3')">
+                <!-- Add more images as needed -->
+            </div>
+        </div>
+        <div class="category">
+            <h2>MashUp</h2>
+            <div class="carousel" id="mashup">
+                <img src="img1.jpg" alt="Item 1" onclick="openDescription('MashUp', 'Item 1')">
+                <img src="img2.jpg" alt="Item 2" onclick="openDescription('MashUp', 'Item 2')">
+                <img src="img3.jpg" alt="Item 3" onclick="openDescription('MashUp', 'Item 3')">
+                <!-- Add more images as needed -->
+            </div>
+        </div>
+        <div class="category">
+            <h2>Skin</h2>
+            <div class="carousel" id="skin">
+                <img src="img1.jpg" alt="Item 1" onclick="openDescription('Skin', 'Item 1')">
+                <img src="img2.jpg" alt="Item 2" onclick="openDescription('Skin', 'Item 2')">
+                <img src="img3.jpg" alt="Item 3" onclick="openDescription('Skin', 'Item 3')">
+                <!-- Add more images as needed -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function openDescription(category, item) {
+            alert(`Category: ${category}\nItem: ${item}`);
+            // Here you can replace the alert with code to open a new page or modal with the description
+        }
+    </script>
+</body>
+</html>
