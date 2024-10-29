@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deskripsi MC Generator</title>
     <style>
-        /* Dark mode styling */
         body {
             font-family: Arial, sans-serif;
             background-color: #121212;
@@ -44,7 +43,7 @@
             margin-bottom: 15px;
         }
 
-        input[type="text"] {
+        input[type="text"], textarea {
             width: calc(100% - 14px);
             padding: 8px;
             font-size: 16px;
@@ -54,6 +53,11 @@
             color: #e0e0e0;
             margin-bottom: 15px;
             transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            border-color: #4CAF50; /* Change border color on focus */
+            outline: none; /* Remove outline */
         }
 
         input[type="radio"] {
@@ -74,7 +78,8 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            width: 100%;
+            width: 100%; /* Full width */
+            max-width: 600px; /* Match the container width */
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
@@ -103,9 +108,9 @@
     <h2>Generator Deskripsi Minecraft</h2>
     <form id="textForm">
         <label for="nama">Nama:</label>
-        <input type="text" id="nama" name="nama" required><br><br>
-        
-        <label>Rating:</label>
+        <input type="text" id="nama" name="nama" required><br>
+
+        <label>Bintang:</label>
         <div class="rating-group">
             <input type="radio" id="bintang1" name="bintang" value="⭐">
             <label for="bintang1">1</label>
@@ -122,29 +127,27 @@
             <input type="radio" id="bintang5" name="bintang" value="⭐⭐⭐⭐⭐">
             <label for="bintang5">5</label>
         </div>
-        
-        <br>
-        
+
         <label for="pembuat">Pembuat:</label>
-        <input type="text" id="pembuat" name="pembuat" required><br><br>
+        <input type="text" id="pembuat" name="pembuat" required><br>
 
         <label for="coin">Minecoin:</label>
-        <input type="text" id="coin" name="coin" required><br><br>
+        <input type="text" id="coin" name="coin" required><br>
         
         <label for="desk">Deskripsi:</label>
-        <input type="text" id="desk" name="desk" required><br><br>
+        <textarea id="desk" name="desk" required></textarea><br>
         
         <label for="versi">Versi:</label>
-        <input type="text" id="versi" name="versi" required><br><br>
+        <input type="text" id="versi" name="versi" required><br>
         
         <label for="review">Review:</label>
-        <input type="text" id="review" name="review" required><br><br>
+        <input type="text" id="review" name="review" required><br>
 
         <label for="linkdown">Link Download:</label>
-        <input type="text" id="linkdown" name="linkdown" required><br><br>
+        <input type="text" id="linkdown" name="linkdown" required><br>
         
         <label for="tipe">Tipe:</label>
-        <input type="text" id="tipe" name="tipe" required><br><br>
+        <input type="text" id="tipe" name="tipe" required><br>
 
         <div class="button-group">
             <button type="button" onclick="generateText()">Generate Text</button>
@@ -154,7 +157,7 @@
 
     <div id="generatedText">
         <!-- Hasil teks yang di-generate akan muncul di sini -->
-    </div>
+    </div> <br>
     <button id="copyButton" onclick="copyHTML()">Salin Hasil</button>
 
     <script>
@@ -166,7 +169,7 @@
             var nama = document.getElementById('nama').value;
             var pembuat = document.getElementById('pembuat').value;
             var coin = document.getElementById('coin').value;
-            var desk = document.getElementById('desk').value;
+            var desk = document.getElementById('desk').value; // Changed to retrieve text from textarea
             var versi = document.getElementById('versi').value;
             var review = document.getElementById('review').value;
             var linkdown = document.getElementById('linkdown').value;
@@ -175,16 +178,16 @@
             var generatedHTML = 
 `${nama}
 ${bintang}
-Pembuat : ${pembuat}
-Minecoin : ${coin}💰
-Deskripsi : ${desk}
-Versi : ${versi}
-Review : ${review}
-Download link : ${linkdown}
+Pembuat: ${pembuat}
+Minecoin: ${coin}💰
+Deskripsi: ${desk}
+Versi: ${versi}
+Review: ${review}
+Download link: ${linkdown}
 KALO MAU REPOST/UPLOAD YOUTUBE SHORTLINKNYA JANGAN DIGANTI, IZIN DULU LEWAT ADMIN DISINI
 ${tipe}`;
 
-            document.getElementById('generatedText').textContent = generatedHTML;
+            document.getElementById('generatedText').textContent = generatedHTML; // Preserve formatting
         }
 
         function clearForm() {
