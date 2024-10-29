@@ -3,70 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desk Marketplace Generator RMC</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Deskripsi MC Generator</title>
     <style>
+        /* Dark mode styling */
         body {
             font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h2 {
+            color: #4CAF50;
+            text-align: center;
+            font-size: 24px;
         }
 
         form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #f9f9f9;
+            background-color: #1e1e1e;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            max-width: 600px;
+            width: 100%;
         }
 
         label {
             display: block;
             margin-bottom: 5px;
+            font-weight: bold;
+            color: #a0a0a0;
+        }
+
+        .rating-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
         input[type="text"] {
-            width: calc(100% - 12px);
-            padding: 6px;
+            width: calc(100% - 14px);
+            padding: 8px;
             font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            margin-bottom: 10px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            background-color: #333;
+            color: #e0e0e0;
+            margin-bottom: 15px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="radio"] {
+            accent-color: #4CAF50;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         button {
             padding: 10px 20px;
             background-color: #4CAF50;
-            color: white;
+            color: #ffffff;
             border: none;
-            border-radius: 3px;
+            border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         button:hover {
             background-color: #45a049;
+            transform: scale(1.03);
         }
 
         #generatedText {
             margin-top: 20px;
             white-space: pre-wrap;
             font-family: monospace;
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 3px;
+            background-color: #2a2a2a;
+            color: #cfcfcf;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            max-width: 600px;
+            width: 100%;
             overflow-wrap: break-word;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
-    <h2>Form Teks Generator</h2>
+    <h2>Generator Deskripsi Minecraft</h2>
     <form id="textForm">
         <label for="nama">Nama:</label>
         <input type="text" id="nama" name="nama" required><br><br>
         
-        <label for="bintang">Bintang:</label>
-        <input type="text" id="bintang" name="bintang" required><br><br>
+        <label>Bintang:</label>
+        <div class="rating-group">
+            <input type="radio" id="bintang1" name="bintang" value="⭐">
+            <label for="bintang1">1</label>
+
+            <input type="radio" id="bintang2" name="bintang" value="⭐⭐">
+            <label for="bintang2">2</label>
+
+            <input type="radio" id="bintang3" name="bintang" value="⭐⭐⭐">
+            <label for="bintang3">3</label>
+
+            <input type="radio" id="bintang4" name="bintang" value="⭐⭐⭐⭐">
+            <label for="bintang4">4</label>
+
+            <input type="radio" id="bintang5" name="bintang" value="⭐⭐⭐⭐⭐">
+            <label for="bintang5">5</label>
+        </div>
 
         <label for="pembuat">Pembuat:</label>
         <input type="text" id="pembuat" name="pembuat" required><br><br>
@@ -89,8 +144,10 @@
         <label for="tipe">Tipe:</label>
         <input type="text" id="tipe" name="tipe" required><br><br>
 
-
-        <button type="button" onclick="generateText()">Generate Text</button>
+        <div class="button-group">
+            <button type="button" onclick="generateText()">Generate Text</button>
+            <button type="button" onclick="clearForm()">Clear</button>
+        </div>
     </form>
 
     <div id="generatedText">
@@ -100,8 +157,11 @@
 
     <script>
         function generateText() {
+            // Cek apakah ada bintang yang dipilih, jika tidak gunakan nilai default
+            var bintangChecked = document.querySelector('input[name="bintang"]:checked');
+            var bintang = bintangChecked ? bintangChecked.value : "Tidak diberi rating";
+
             var nama = document.getElementById('nama').value;
-            var bintang = document.getElementById('bintang').value;
             var pembuat = document.getElementById('pembuat').value;
             var coin = document.getElementById('coin').value;
             var desk = document.getElementById('desk').value;
@@ -109,7 +169,6 @@
             var review = document.getElementById('review').value;
             var linkdown = document.getElementById('linkdown').value;
             var tipe = document.getElementById('tipe').value;
-
 
             var generatedHTML = 
 `${nama}
@@ -120,10 +179,15 @@ Deskripsi : ${desk}
 Versi : ${versi}
 Review : ${review}
 Download link : ${linkdown}
-KALO MAU REPOST/UPLOAD YOUTUBE SHORTLINKNYA JANGAN DIGANTI, IZIN DULU LEWAT ADMIN SINI
+KALO MAU REPOST/UPLOAD YOUTUBE SHORTLINKNYA JANGAN DIGANTI, IZIN DULU LEWAT ADMIN DISINI
 ${tipe}`;
 
             document.getElementById('generatedText').textContent = generatedHTML;
+        }
+
+        function clearForm() {
+            document.getElementById('textForm').reset();
+            document.getElementById('generatedText').textContent = "";
         }
 
         function copyHTML() {
@@ -137,5 +201,4 @@ ${tipe}`;
         }
     </script>
 </body>
-  </html>
-  
+</html>
