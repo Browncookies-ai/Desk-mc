@@ -13,6 +13,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         h2 {
@@ -28,6 +29,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             max-width: 600px;
             width: 100%;
+            transition: background-color 0.3s;
         }
 
         label {
@@ -56,8 +58,8 @@
         }
 
         input[type="text"]:focus, textarea:focus {
-            border-color: #4CAF50; /* Change border color on focus */
-            outline: none; /* Remove outline */
+            border-color: #4CAF50;
+            outline: none;
         }
 
         input[type="radio"] {
@@ -78,8 +80,8 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            width: 100%; /* Full width */
-            max-width: 600px; /* Match the container width */
+            width: 100%;
+            max-width: 600px;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
@@ -102,15 +104,59 @@
             overflow-wrap: break-word;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
+
+        /* Light mode styling */
+        .light-mode {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .light-mode h2 {
+            color: #4CAF50;
+        }
+
+        .light-mode form {
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode label {
+            color: #555;
+        }
+
+        .light-mode input[type="text"], .light-mode textarea {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        .light-mode #generatedText {
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        /* Theme toggle styling */
+        .theme-toggle {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
     <h2>Generator Deskripsi Minecraft</h2>
+    
+    <div class="theme-toggle">
+        <label><input type="radio" name="theme" value="dark" onclick="toggleTheme('dark')" checked> Dark Mode</label>
+        <label><input type="radio" name="theme" value="light" onclick="toggleTheme('light')"> Light Mode</label>
+    </div><br>
+
     <form id="textForm">
         <label for="nama">Nama:</label>
-        <input type="text" id="nama" name="nama" required>
-        
-        <br>
+        <input type="text" id="nama" name="nama" required><br>
 
         <label>Rating:</label>
         <div class="rating-group">
@@ -158,20 +204,27 @@
     </form>
 
     <div id="generatedText">
-        <!-- Hasil teks yang di-generate akan muncul di sini -->
-    </div> <br>
+       
+    </div><br>
     <button id="copyButton" onclick="copyHTML()">Salin Hasil</button>
 
     <script>
+        function toggleTheme(theme) {
+            if (theme === 'light') {
+                document.body.classList.add('light-mode');
+            } else {
+                document.body.classList.remove('light-mode');
+            }
+        }
+
         function generateText() {
-            // Cek apakah ada bintang yang dipilih, jika tidak gunakan nilai default
             var bintangChecked = document.querySelector('input[name="bintang"]:checked');
             var bintang = bintangChecked ? bintangChecked.value : "Tidak diberi rating";
 
             var nama = document.getElementById('nama').value;
             var pembuat = document.getElementById('pembuat').value;
             var coin = document.getElementById('coin').value;
-            var desk = document.getElementById('desk').value; // Changed to retrieve text from textarea
+            var desk = document.getElementById('desk').value;
             var versi = document.getElementById('versi').value;
             var review = document.getElementById('review').value;
             var linkdown = document.getElementById('linkdown').value;
@@ -180,16 +233,16 @@
             var generatedHTML = 
 `${nama}
 ${bintang}
-Pembuat: ${pembuat}
-Minecoin: ${coin}💰
-Deskripsi: ${desk}
-Versi: ${versi}
-Review: ${review}
-Download link: ${linkdown}
+Pembuat : ${pembuat}
+Minecoin : ${coin}💰
+Deskripsi : ${desk}
+Versi : ${versi}
+Review : ${review}
+Download link : ${linkdown}
 KALO MAU REPOST/UPLOAD YOUTUBE SHORTLINKNYA JANGAN DIGANTI, IZIN DULU LEWAT ADMIN DISINI
 ${tipe}`;
 
-            document.getElementById('generatedText').textContent = generatedHTML; // Preserve formatting
+            document.getElementById('generatedText').textContent = generatedHTML;
         }
 
         function clearForm() {
