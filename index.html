@@ -254,8 +254,7 @@ ${tipe}`;
             var textToCopy = document.getElementById('generatedText').textContent;
 
             navigator.clipboard.writeText(textToCopy).then(function() {
-                alert('Deskripsi berhasil disalin!
-                      Tools by Rainbow Man');
+                alert('Deskripsi berhasil disalin!');
             }, function(err) {
                 alert('Gagal menyalin teks: ', err);
             });
